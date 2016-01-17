@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.herve</groupId>
+	<artifactId>myspace</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>myspace</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <junit.version>4.8.1</junit.version>
+        <liferay.version>6.2.2</liferay.version>
+        <liferay.maven.plugin.version>6.2.0-RC5</liferay.maven.plugin.version>
+        
+		<catalina.home>${liferay.home}/tomcat-7.0.42</catalina.home>
+
+		<liferay.auto.deploy.dir>${liferay.home}/deploy</liferay.auto.deploy.dir>
+		<liferay.app.server.deploy.dir>${catalina.home}/webapps</liferay.app.server.deploy.dir>
+		<liferay.app.server.lib.global.dir>${catalina.home}/lib/ext</liferay.app.server.lib.global.dir>
+		<liferay.app.server.portal.dir>${catalina.home}/webapps/ROOT</liferay.app.server.portal.dir>
+    </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>myspace-plugins</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>com.liferay.maven.plugins</groupId>
+					<artifactId>liferay-maven-plugin</artifactId>
+					<version>${liferay.maven.plugin.version}</version>
+	
+					<configuration>
+						<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+						<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
+						<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
+						<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
+						<liferayVersion>${liferay.version}</liferayVersion>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
